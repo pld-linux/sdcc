@@ -1,5 +1,5 @@
-Summary:	C compiler for Intel 8051 and Zilog Z80.
-Summary(pl):	Kompilator C dla Intel 8051 i Zilog Z80.
+Summary:	C compiler for Intel 8051 and Zilog Z80
+Summary(pl):	Kompilator C dla Intel 8051 i Zilog Z80
 Name:		sdcc
 Version:	2.3.0
 Release:	2
