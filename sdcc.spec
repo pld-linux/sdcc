@@ -6,15 +6,15 @@ Version:	2.4.8
 Release:	0.%{_snap}.1
 License:	GPL
 Group:		Development/Languages
-Source0:	http://%{name}.sourceforge.net/snapshots/%{name}-src/%{name}-src-%{_snap}.tar.gz
+Source0:	http://sdcc.sourceforge.net/snapshots/sdcc-src/%{name}-src-%{_snap}.tar.gz
 # Source0-md5:	9dc2685bce0fc074a15527be7367fe59
 URL:		http://sdcc.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	libstdc++-devel
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	ucsim
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 SDCC is retargettable, optimizing ANSI - C compiler. The current
