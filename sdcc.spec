@@ -1,14 +1,13 @@
+%define		_snap	20050216
 Summary:	C compiler for Intel 8051 and Zilog Z80
 Summary(pl):	Kompilator C dla Intel 8051 i Zilog Z80
 Name:		sdcc
-Version:	2.4.0
-Release:	0.1
+Version:	2.4.8
+Release:	0.%{_snap}.1
 License:	GPL
 Group:		Development/Languages
-Source0:	http://dl.sourceforge.net/sdcc/%{name}-%{version}.tar.gz
-# Source0-md5:	ef959381f292d8857d8679f92a71582d
-Patch0:		%{name}-autoconf.patch
-Patch1:		%{name}-DESTDIR.patch
+Source0:	http://%{name}.sourceforge.net/snapshots/%{name}-src/%{name}-src-%{_snap}.tar.gz
+# Source0-md5:	9dc2685bce0fc074a15527be7367fe59
 URL:		http://sdcc.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	bison
@@ -36,17 +35,15 @@ oparty na emulatorze ucsim.
 
 %prep
 %setup -qn %{name}
-#%patch0 -p1
-%patch1 -p1
 
 %build
-for d in . support/cpp2 packihx sim/ucsim ; do
+for d in . device/lib/pic16 packihx sim/ucsim sim/ucsim/libltdl support/cpp2 ; do
 	OLDDIR="`pwd`"
 	cd $d
 	%{__autoconf}
 	cd "$OLDDIR"
 done
-%configure --disable-ucsim
+%configure
 %{__make}
 
 %install
