@@ -1,0 +1,557 @@
+diff -durN sdcc.orig/Makefile.common.in sdcc/Makefile.common.in
+--- sdcc.orig/Makefile.common.in	Wed Jul 18 06:43:24 2001
++++ sdcc/Makefile.common.in	Sat Dec  1 11:21:12 2001
+@@ -33,6 +33,7 @@
+ infodir         = @infodir@
+ srcdir          = @srcdir@
+ docdir          = @datadir@/doc/sdcc
++DESTDIR		= 
+ 
+ # Modules to enable/disable
+ OPT_ENABLE_UCSIM = @OPT_ENABLE_UCSIM@
+diff -durN sdcc.orig/as/Makefile sdcc/as/Makefile
+--- sdcc.orig/as/Makefile	Mon Sep  3 20:31:40 2001
++++ sdcc/as/Makefile	Sat Dec  1 11:22:10 2001
+@@ -8,13 +8,13 @@
+ 	$(MAKE) -C z80 _as-z80 _as-gbz80 E=$(E) BUILDDIR=../../bin/
+ 
+ install: all install-doc
+-	$(INSTALL) $(PRJDIR)/bin/as-z80 `echo $(bindir)/as-z80|sed '$(transform)'`
+-	$(STRIP) -s `echo $(bindir)/as-z80|sed '$(transform)'`
+-	$(INSTALL) $(PRJDIR)/bin/as-gbz80 `echo $(bindir)/as-gbz80|sed '$(transform)'`
+-	$(STRIP) -s `echo $(bindir)/as-gbz80|sed '$(transform)'`
++	$(INSTALL) $(PRJDIR)/bin/as-z80 $(DESTDIR)`echo $(bindir)/as-z80|sed '$(transform)'`
++	$(STRIP) -s $(DESTDIR)`echo $(bindir)/as-z80|sed '$(transform)'`
++	$(INSTALL) $(PRJDIR)/bin/as-gbz80 $(DESTDIR)`echo $(bindir)/as-gbz80|sed '$(transform)'`
++	$(STRIP) -s $(DESTDIR)`echo $(bindir)/as-gbz80|sed '$(transform)'`
+ 
+ install-doc:
+-	$(INSTALL) -d $(docdir)/aslink
+-	cp -f `find doc -maxdepth 1 -not -type d` $(docdir)/aslink
++	$(INSTALL) -d $(DESTDIR)$(docdir)/aslink
++	cp -f `find doc -maxdepth 1 -not -type d` $(DESTDIR)$(docdir)/aslink
+ 
+ include clean.mk
+diff -durN sdcc.orig/as/mcs51/Makefile.in sdcc/as/mcs51/Makefile.in
+--- sdcc.orig/as/mcs51/Makefile.in	Mon Jul  2 03:53:45 2001
++++ sdcc/as/mcs51/Makefile.in	Sat Dec  1 11:23:05 2001
+@@ -61,15 +61,15 @@
+ # Compiling and installing everything and runing test
+ # ---------------------------------------------------
+ install: all installdirs
+-	$(INSTALL) $(ASX8051) `echo $(bindir)/asx8051|sed '$(transform)'`
+-	$(STRIP) -s `echo $(bindir)/asx8051|sed '$(transform)'`
+-	$(INSTALL) $(ASLINK) `echo $(bindir)/aslink|sed '$(transform)'`
+-	$(STRIP) -s `echo $(bindir)/aslink|sed '$(transform)'`
++	$(INSTALL) $(ASX8051) $(DESTDIR)`echo $(bindir)/asx8051|sed '$(transform)'`
++	$(STRIP) -s $(DESTDIR)`echo $(bindir)/asx8051|sed '$(transform)'`
++	$(INSTALL) $(ASLINK) $(DESTDIR)`echo $(bindir)/aslink|sed '$(transform)'`
++	$(STRIP) -s $(DESTDIR)`echo $(bindir)/aslink|sed '$(transform)'`
+ 
+ # Deleting all the installed files
+ # --------------------------------
+ uninstall:
+-	rm -f $(bindir)/asx8051 $(bindir)/aslink
++	rm -f $(bindir)/asx8051 $(DESTDIR)$(bindir)/aslink
+ 
+ 
+ # Performing self-test
+@@ -85,7 +85,7 @@
+ # Creating installation directories
+ # ---------------------------------
+ installdirs:
+-	$(INSTALL) -d $(bindir)
++	$(INSTALL) -d $(DESTDIR)$(bindir)
+ 
+ 
+ # Creating dependencies
+diff -durN sdcc.orig/as/z80/Makefile.in sdcc/as/z80/Makefile.in
+--- sdcc.orig/as/z80/Makefile.in	Thu Aug 16 22:04:20 2001
++++ sdcc/as/z80/Makefile.in	Sat Dec  1 11:23:32 2001
+@@ -47,12 +47,12 @@
+ # Compiling and installing everything and runing test
+ # ---------------------------------------------------
+ install: all installdirs
+-	$(INSTALL) $(ASXZ80) $(bindir)/as-z80
++	$(INSTALL) $(ASXZ80) $(DESTDIR)$(bindir)/as-z80
+ 
+ # Deleting all the installed files
+ # --------------------------------
+ uninstall:
+-	rm -f $(bindir)/as-z80
++	rm -f $(DESTDIR)$(bindir)/as-z80
+ 
+ 
+ # Performing self-test
+@@ -68,7 +68,7 @@
+ # Creating installation directories
+ # ---------------------------------
+ installdirs:
+-	$(INSTALL) -d $(bindir)
++	$(INSTALL) -d $(DESTDIR)$(bindir)
+ 
+ 
+ # Creating dependencies
+diff -durN sdcc.orig/debugger/mcs51/Makefile.in sdcc/debugger/mcs51/Makefile.in
+--- sdcc.orig/debugger/mcs51/Makefile.in	Sun Feb 18 02:11:03 2001
++++ sdcc/debugger/mcs51/Makefile.in	Sat Dec  1 11:24:01 2001
+@@ -53,17 +53,17 @@
+ # Compiling and installing everything and runing test
+ # ---------------------------------------------------
+ install: all installdirs
+-	$(INSTALL) -s $(TARGET) $(bindir)/sdcdb
+-	cp $(PRJDIR)/debugger/mcs51/sdcdb.el $(bindir)/sdcdb.el
+-	cp $(PRJDIR)/debugger/mcs51/sdcdbsrc.el $(bindir)/sdcdbsrc.el
++	$(INSTALL) -s $(TARGET) $(DESTDIR)$(bindir)/sdcdb
++	cp $(PRJDIR)/debugger/mcs51/sdcdb.el $(DESTDIR)$(bindir)/sdcdb.el
++	cp $(PRJDIR)/debugger/mcs51/sdcdbsrc.el $(DESTDIR)$(bindir)/sdcdbsrc.el
+ 
+ 
+ # Deleting all the installed files
+ # --------------------------------
+ uninstall:
+-	rm -f $(bindir)/sdcdb
+-	rm -f $(bindir)/sdcdb.el
+-	rm -f $(bindir)/sdcdbsrc.el
++	rm -f $(DESTDIR)$(bindir)/sdcdb
++	rm -f $(DESTDIR)$(bindir)/sdcdb.el
++	rm -f $(DESTDIR)$(bindir)/sdcdbsrc.el
+ 
+ # Performing self-test
+ # --------------------
+@@ -78,7 +78,7 @@
+ # Creating installation directories
+ # ---------------------------------
+ installdirs:
+-	$(INSTALL) -d $(bindir)
++	$(INSTALL) -d $(DESTDIR)$(bindir)
+ 
+ 
+ # Creating dependencies
+diff -durN sdcc.orig/device/include/Makefile.in sdcc/device/include/Makefile.in
+--- sdcc.orig/device/include/Makefile.in	Wed Jul 11 04:49:31 2001
++++ sdcc/device/include/Makefile.in	Sat Dec  1 11:26:04 2001
+@@ -38,13 +38,13 @@
+ # Compiling and installing everything and runing test
+ # ---------------------------------------------------
+ install: all installdirs
+-	$(CP) -r asm *.h $(sdcc_datadir)/include/
++	$(CP) -r asm *.h $(DESTDIR)$(sdcc_datadir)/include/
+ 
+ 
+ # Deleting all the installed files
+ # --------------------------------
+ uninstall:
+-	for hdr in *.h; do rm -f $(sdcc_datadir)/$$hdr; done
++	for hdr in *.h; do rm -f $(DESTDIR)$(sdcc_datadir)/$$hdr; done
+ 
+ 
+ # Performing self-test
+@@ -60,7 +60,7 @@
+ # Creating installation directories
+ # ---------------------------------
+ installdirs:
+-	[ -d $(sdcc_datadir)/include ] || mkdir -p $(sdcc_datadir)/include
++	[ -d $(DESTDIR)$(sdcc_datadir)/include ] || mkdir -p $(DESTDIR)$(sdcc_datadir)/include
+ 
+ 
+ # Creating dependencies
+diff -durN sdcc.orig/device/lib/Makefile.in sdcc/device/lib/Makefile.in
+--- sdcc.orig/device/lib/Makefile.in	Sun Sep  2 01:01:08 2001
++++ sdcc/device/lib/Makefile.in	Sat Dec  1 11:25:19 2001
+@@ -131,19 +131,19 @@
+ # Compiling and installing everything and runing test
+ # ---------------------------------------------------
+ install: all installdirs
+-	cp -r $(BUILDDIR)/* $(sdcc_datadir)/lib
+-	cp -r ds390 gbz80 z80 *.c $(sdcc_datadir)/lib/src
+-	rm `find $(sdcc_datadir)/lib/src -name '*.rel' -or -name '*.dump*' -or -name '*.sym' -or -name '*.o' -or -name '*.lst' -or -name '*.asm'`
++	cp -r $(BUILDDIR)/* $(DESTDIR)$(sdcc_datadir)/lib
++	cp -r ds390 gbz80 z80 *.c $(DESTDIR)$(sdcc_datadir)/lib/src
++	rm `find $(DESTDIR)$(sdcc_datadir)/lib/src -name '*.rel' -or -name '*.dump*' -or -name '*.sym' -or -name '*.o' -or -name '*.lst' -or -name '*.asm'`
+ 
+ # Deleting all the installed files
+ # --------------------------------
+ uninstall:
+-	for hdr in ../include/*.h; do rm -f $(sdcc_datadir)/include/$$hdr; done
+-	for cfl in *.c; do rm -f $(sdcc_datadir)/lib/$$cfl; done
++	for hdr in ../include/*.h; do rm -f $(DESTDIR)$(sdcc_datadir)/include/$$hdr; done
++	for cfl in *.c; do rm -f $(DESTDIR)$(sdcc_datadir)/lib/$$cfl; done
+ 	for model in $(MODELS); do \
+-	  rm -rf $(sdcc_datadir)/lib/$$model; \
++	  rm -rf $(DESTDIR)$(sdcc_datadir)/lib/$$model; \
+ 	done
+-	rm -rf $(sdcc_datadir)/lib/ds390
++	rm -rf $(DESTDIR)$(sdcc_datadir)/lib/ds390
+ 
+ 
+ # Performing self-test
+@@ -159,13 +159,13 @@
+ # Creating installation directories
+ # ---------------------------------
+ installdirs:
+-	[ -d $(sdcc_datadir)/lib ] || mkdir -p $(sdcc_datadir)/lib
++	[ -d $(DESTDIR)$(sdcc_datadir)/lib ] || mkdir -p $(DESTDIR)$(sdcc_datadir)/lib
+ 	for model in $(MODELS); do \
+-	 [ -d $(sdcc_datadir)/lib/$$model ] || \
+-	 mkdir -p $(sdcc_datadir)/lib/$$model; \
++	 [ -d $(DESTDIR)$(sdcc_datadir)/lib/$$model ] || \
++	 mkdir -p $(DESTDIR)$(sdcc_datadir)/lib/$$model; \
+ 	done
+-	[ -d $(sdcc_datadir)/lib/ds390 ] || mkdir -p $(sdcc_datadir)/lib/ds390
+-	mkdir -p $(sdcc_datadir)/lib/src
++	[ -d $(DESTDIR)$(sdcc_datadir)/lib/ds390 ] || mkdir -p $(DESTDIR)$(sdcc_datadir)/lib/ds390
++	mkdir -p $(DESTDIR)$(sdcc_datadir)/lib/src
+ 
+ # Creating dependencies
+ # ---------------------
+diff -durN sdcc.orig/doc/Makefile sdcc/doc/Makefile
+--- sdcc.orig/doc/Makefile	Sat Jul 21 06:40:53 2001
++++ sdcc/doc/Makefile	Sat Dec  1 11:26:43 2001
+@@ -7,11 +7,11 @@
+ 	$(TSS).html $(TSS).pdf $(TSS).txt
+ 
+ install:
+-	$(INSTALL) -d $(docdir)
+-	cp -rf *.html *.txt *.pdf $(MANUAL).html $(TSS).html z80 avr $(docdir)
++	$(INSTALL) -d $(DESTDIR)$(docdir)
++	cp -rf *.html *.txt *.pdf $(MANUAL).html $(TSS).html z80 avr $(DESTDIR)$(docdir)
+ 
+ uninstall:
+-	rm -rf $(docdir)
++	rm -rf $(DESTDIR)$(docdir)
+ 
+ 
+ $(MANUAL).html: $(MANUAL).tex $(MANUAL).ind ;#$(MANUAL).glo
+diff -durN sdcc.orig/link/Makefile sdcc/link/Makefile
+--- sdcc.orig/link/Makefile	Mon Sep  3 20:31:40 2001
++++ sdcc/link/Makefile	Sat Dec  1 11:27:04 2001
+@@ -8,9 +8,9 @@
+ 	$(MAKE) -C z80 _link-z80 _link-gbz80 E=$(E) BUILDDIR=../../bin/
+ 
+ install: all
+-	$(INSTALL) $(PRJDIR)/bin/link-z80 `echo $(bindir)/link-z80|sed '$(transform)'`
+-	$(STRIP) `echo $(bindir)/link-z80|sed '$(transform)'`
+-	$(INSTALL) $(PRJDIR)/bin/link-gbz80 `echo $(bindir)/link-gbz80|sed '$(transform)'`
+-	$(STRIP) `echo $(bindir)/link-gbz80|sed '$(transform)'`
++	$(INSTALL) $(PRJDIR)/bin/link-z80 $(DESTDIR)`echo $(bindir)/link-z80|sed '$(transform)'`
++	$(STRIP) $(DESTDIR)`echo $(bindir)/link-z80|sed '$(transform)'`
++	$(INSTALL) $(PRJDIR)/bin/link-gbz80 $(DESTDIR)`echo $(bindir)/link-gbz80|sed '$(transform)'`
++	$(STRIP) $(DESTDIR)`echo $(bindir)/link-gbz80|sed '$(transform)'`
+ 
+ include clean.mk
+diff -durN sdcc.orig/link/z80/Makefile.in sdcc/link/z80/Makefile.in
+--- sdcc.orig/link/z80/Makefile.in	Thu Aug 16 22:09:35 2001
++++ sdcc/link/z80/Makefile.in	Sat Dec  1 11:27:21 2001
+@@ -52,12 +52,12 @@
+ # Compiling and installing everything and runing test
+ # ---------------------------------------------------
+ install: all installdirs
+-	$(INSTALL) $(LKZ80) $(bindir)/link-z80
++	$(INSTALL) $(LKZ80) $(DESTDIR)$(bindir)/link-z80
+ 
+ # Deleting all the installed files
+ # --------------------------------
+ uninstall:
+-	rm -f $(bindir)/link-z80
++	rm -f $(DESTDIR)$(bindir)/link-z80
+ 
+ 
+ # Performing self-test
+@@ -73,7 +73,7 @@
+ # Creating installation directories
+ # ---------------------------------
+ installdirs:
+-	$(INSTALL) -d $(bindir)
++	$(INSTALL) -d $(DESTDIR)$(bindir)
+ 
+ 
+ # Creating dependencies
+diff -durN sdcc.orig/packihx/Makefile.in sdcc/packihx/Makefile.in
+--- sdcc.orig/packihx/Makefile.in	Mon Jul  2 03:53:45 2001
++++ sdcc/packihx/Makefile.in	Sat Dec  1 11:27:49 2001
+@@ -13,13 +13,13 @@
+ all: $(TARGET)
+ 
+ install: all installdirs
+-	$(INSTALL) $(TARGET) `echo $(bindir)/packihx|sed '$(transform)'`
+-	$(STRIP) -s `echo $(bindir)/packihx|sed '$(transform)'`
++	$(INSTALL) $(TARGET) $(DESTDIR)`echo $(bindir)/packihx|sed '$(transform)'`
++	$(STRIP) -s $(DESTDIR)`echo $(bindir)/packihx|sed '$(transform)'`
+ 
+ # Deleting all the installed files
+ # --------------------------------
+ uninstall:
+-	rm -f $(bindir)/packihx
++	rm -f $(DESTDIR)$(bindir)/packihx
+ 
+ # Performing self-test
+ # --------------------
+@@ -34,7 +34,7 @@
+ # Creating installation directories
+ # ---------------------------------
+ installdirs:
+-	$(INSTALL) -d $(bindir)
++	$(INSTALL) -d $(DESTDIR)$(bindir)
+ 
+ 
+ # Creating dependencies
+diff -durN sdcc.orig/sim/ucsim/avr.src/Makefile.in sdcc/sim/ucsim/avr.src/Makefile.in
+--- sdcc.orig/sim/ucsim/avr.src/Makefile.in	Mon Apr  2 15:08:47 2001
++++ sdcc/sim/ucsim/avr.src/Makefile.in	Sat Dec  1 11:28:35 2001
+@@ -56,13 +56,13 @@
+ # Compiling and installing everything and runing test
+ # ---------------------------------------------------
+ install: all installdirs
+-	$(INSTALL) -s savr $(bindir)
++	$(INSTALL) -s savr $(DESTDIR)$(bindir)
+ 
+ 
+ # Deleting all the installed files
+ # --------------------------------
+ uninstall:
+-	rm -f $(bindir)/savr
++	rm -f $(DESTDIR)$(bindir)/savr
+ 
+ 
+ # Performing self-test
+@@ -78,7 +78,7 @@
+ # Creating installation directories
+ # ---------------------------------
+ installdirs:
+-	test -d $(bindir) || $(INSTALL) -d $(bindir)
++	test -d $(DESTDIR)$(bindir) || $(INSTALL) -d $(DESTDIR)$(bindir)
+ 
+ 
+ # Creating dependencies
+diff -durN sdcc.orig/sim/ucsim/doc/Makefile.in sdcc/sim/ucsim/doc/Makefile.in
+--- sdcc.orig/sim/ucsim/doc/Makefile.in	Mon Feb  7 09:03:22 2000
++++ sdcc/sim/ucsim/doc/Makefile.in	Sat Dec  1 11:29:21 2001
+@@ -34,16 +34,16 @@
+ # Compiling and installing everything and runing test
+ # ---------------------------------------------------
+ install: all installdirs
+-	cp *.html $(docdir)
+-	cp *.gif $(docdir)
+-	cp *.jpg $(docdir)
+-	cp *.fig $(docdir)
++	cp *.html $(DESTDIR)$(docdir)
++	cp *.gif $(DESTDIR)$(docdir)
++	cp *.jpg $(DESTDIR)$(docdir)
++	cp *.fig $(DESTDIR)$(docdir)
+ 
+ 
+ # Deleting all the installed files
+ # --------------------------------
+ uninstall:
+-	rm -f $(docdir)/*
++	rm -f $(DESTDIR)$(docdir)/*
+ 
+ 
+ # Performing self-test
+@@ -59,7 +59,7 @@
+ # Creating installation directories
+ # ---------------------------------
+ installdirs:
+-	test -d $(docdir) || $(INSTALL) -d $(docdir)
++	test -d $(DESTDIR)$(docdir) || $(INSTALL) -d $(DESTDIR)$(docdir)
+ 
+ 
+ # Creating dependencies
+diff -durN sdcc.orig/sim/ucsim/gui.src/obsolete/portmon.src/Makefile.in sdcc/sim/ucsim/gui.src/obsolete/portmon.src/Makefile.in
+--- sdcc.orig/sim/ucsim/gui.src/obsolete/portmon.src/Makefile.in	Mon Apr  2 15:08:48 2001
++++ sdcc/sim/ucsim/gui.src/obsolete/portmon.src/Makefile.in	Sat Dec  1 11:30:01 2001
+@@ -48,13 +48,13 @@
+ # Compiling and installing everything and runing test
+ # ---------------------------------------------------
+ install: all installdirs
+-	$(INSTALL) -s portmon $(bindir)
++	$(INSTALL) -s portmon $(DESTDIR)$(bindir)
+ 
+ 
+ # Deleting all the installed files
+ # --------------------------------
+ uninstall:
+-	rm -f $(bindir)/portmon
++	rm -f $(DESTDIR)$(bindir)/portmon
+ 
+ 
+ # Performing self-test
+@@ -70,7 +70,7 @@
+ # Creating installation directories
+ # ---------------------------------
+ installdirs:
+-	test -d $(bindir) || $(INSTALL) -d $(bindir)
++	test -d $(DESTDIR)$(bindir) || $(INSTALL) -d $(DESTDIR)$(bindir)
+ 
+ 
+ # Creating dependencies
+diff -durN sdcc.orig/sim/ucsim/gui.src/serio.src/Makefile.in sdcc/sim/ucsim/gui.src/serio.src/Makefile.in
+--- sdcc.orig/sim/ucsim/gui.src/serio.src/Makefile.in	Wed Mar  1 14:19:35 2000
++++ sdcc/sim/ucsim/gui.src/serio.src/Makefile.in	Sat Dec  1 11:30:23 2001
+@@ -48,13 +48,13 @@
+ # Compiling and installing everything and runing test
+ # ---------------------------------------------------
+ install: all installdirs
+-	$(INSTALL) -s serialview $(bindir)
++	$(INSTALL) -s serialview $(DESTDIR)$(bindir)
+ 
+ 
+ # Deleting all the installed files
+ # --------------------------------
+ uninstall:
+-	rm -f $(bindir)/serialview
++	rm -f $(DESTDIR)$(bindir)/serialview
+ 
+ 
+ # Performing self-test
+@@ -70,7 +70,7 @@
+ # Creating installation directories
+ # ---------------------------------
+ installdirs:
+-	test -d $(bindir) || $(INSTALL) -d $(bindir)
++	test -d $(DESTDIR)$(bindir) || $(INSTALL) -d $(DESTDIR)$(bindir)
+ 
+ 
+ # Creating dependencies
+diff -durN sdcc.orig/sim/ucsim/s51.src/Makefile.in sdcc/sim/ucsim/s51.src/Makefile.in
+--- sdcc.orig/sim/ucsim/s51.src/Makefile.in	Thu Aug 30 19:38:53 2001
++++ sdcc/sim/ucsim/s51.src/Makefile.in	Sat Dec  1 11:30:48 2001
+@@ -66,14 +66,14 @@
+ # Compiling and installing everything and runing test
+ # ---------------------------------------------------
+ install: all installdirs
+-	if test -f s51.exe; then $(INSTALL) -s s51.exe $(bindir);fi
+-	if test -f s51; then $(INSTALL) -s s51 $(bindir);fi
++	if test -f s51.exe; then $(INSTALL) -s s51.exe $(DESTDIR)$(bindir);fi
++	if test -f s51; then $(INSTALL) -s s51 $(DESTDIR)$(bindir);fi
+ 
+ 
+ # Deleting all the installed files
+ # --------------------------------
+ uninstall:
+-	rm -f $(bindir)/s51
++	rm -f $(DESTDIR)$(bindir)/s51
+ 
+ 
+ # Performing self-test
+@@ -89,7 +89,7 @@
+ # Creating installation directories
+ # ---------------------------------
+ installdirs:
+-	test -d $(bindir) || $(INSTALL) -d $(bindir)
++	test -d $(DESTDIR)$(bindir) || $(INSTALL) -d $(DESTDIR)$(bindir)
+ 
+ 
+ # Creating dependencies
+diff -durN sdcc.orig/sim/ucsim/z80.src/Makefile.in sdcc/sim/ucsim/z80.src/Makefile.in
+--- sdcc.orig/sim/ucsim/z80.src/Makefile.in	Mon Apr  2 15:08:48 2001
++++ sdcc/sim/ucsim/z80.src/Makefile.in	Sat Dec  1 11:31:15 2001
+@@ -55,13 +55,13 @@
+ # Compiling and installing everything and runing test
+ # ---------------------------------------------------
+ install: all installdirs
+-	$(INSTALL) -s sz80 $(bindir)
++	$(INSTALL) -s sz80 $(DESTDIR)$(bindir)
+ 
+ 
+ # Deleting all the installed files
+ # --------------------------------
+ uninstall:
+-	rm -f $(bindir)/sz80
++	rm -f $(DESTDIR)$(bindir)/sz80
+ 
+ 
+ # Performing self-test
+@@ -77,7 +77,7 @@
+ # Creating installation directories
+ # ---------------------------------
+ installdirs:
+-	test -d $(bindir) || $(INSTALL) -d $(bindir)
++	test -d $(DESTDIR)$(bindir) || $(INSTALL) -d $(DESTDIR)$(bindir)
+ 
+ 
+ # Creating dependencies
+diff -durN sdcc.orig/src/Makefile.in sdcc/src/Makefile.in
+--- sdcc.orig/src/Makefile.in	Mon Jul  2 03:53:45 2001
++++ sdcc/src/Makefile.in	Sat Dec  1 11:31:54 2001
+@@ -54,14 +54,14 @@
+ # Compiling and installing everything and runing test
+ # ---------------------------------------------------
+ install: all installdirs
+-	$(INSTALL) $(TARGET) `echo $(bindir)/sdcc|sed '$(transform)'`
+-	$(STRIP) -s `echo $(bindir)/sdcc|sed '$(transform)'`
++	$(INSTALL) $(TARGET) $(DESTDIR)`echo $(bindir)/sdcc|sed '$(transform)'`
++	$(STRIP) -s $(DESTDIR)`echo $(bindir)/sdcc|sed '$(transform)'`
+ 
+ 
+ # Deleting all the installed files
+ # --------------------------------
+ uninstall:
+-	rm -f $(bindir)/sdcc
++	rm -f $(DESTDIR)$(bindir)/sdcc
+ 
+ # Performing self-test
+ # --------------------
+@@ -76,7 +76,7 @@
+ # Creating installation directories
+ # ---------------------------------
+ installdirs:
+-	$(INSTALL) -d $(bindir)
++	$(INSTALL) -d $(DESTDIR)$(bindir)
+ 
+ 
+ # Creating dependencies
+diff -durN sdcc.orig/support/cpp/Makefile.in sdcc/support/cpp/Makefile.in
+--- sdcc.orig/support/cpp/Makefile.in	Sat Aug 18 06:41:51 2001
++++ sdcc/support/cpp/Makefile.in	Sat Dec  1 11:32:53 2001
+@@ -56,13 +56,13 @@
+ # Compiling and installing everything and runing test
+ # ---------------------------------------------------
+ install: all installdirs
+-	$(INSTALL) $(TARGET) `echo $(bindir)/sdcppold|sed '$(transform)'`
+-	$(STRIP) -s `echo $(bindir)/sdcppold|sed '$(transform)'`
++	$(INSTALL) $(TARGET) $(DESTDIR)`echo $(bindir)/sdcppold|sed '$(transform)'`
++	$(STRIP) -s $(DESTDIR)`echo $(bindir)/sdcppold|sed '$(transform)'`
+ 
+ # Deleting all the installed files
+ # --------------------------------
+ uninstall:
+-	rm -f $(bindir)/sdcppold
++	rm -f $(DESTDIR)$(bindir)/sdcppold
+ 
+ 
+ # Performing self-test
+@@ -78,7 +78,7 @@
+ # Creating installation directories
+ # ---------------------------------
+ installdirs:
+-	$(INSTALL) -d $(bindir)
++	$(INSTALL) -d $(DESTDIR)$(bindir)
+ 
+ 
+ # Creating dependencies
+diff -durN sdcc.orig/support/cpp2/Makefile.in sdcc/support/cpp2/Makefile.in
+--- sdcc.orig/support/cpp2/Makefile.in	Sat Dec  1 11:19:47 2001
++++ sdcc/support/cpp2/Makefile.in	Sat Dec  1 11:33:21 2001
+@@ -106,8 +106,8 @@
+ # End of variables for you to override.
+ 
+ install: all
+-	$(INSTALL) $(TARGET) `echo $(bindir)/sdcpp|sed '$(transform)'`
+-	$(STRIP) -s `echo $(bindir)/sdcpp|sed '$(transform)'`
++	$(INSTALL) $(TARGET) $(DESTDIR)`echo $(bindir)/sdcpp|sed '$(transform)'`
++	$(STRIP) -s $(DESTDIR)`echo $(bindir)/sdcpp|sed '$(transform)'`
+ 
+ clean:
+ 	-rm -f $(TARGET) *.o core libcpp.a
+diff -durN sdcc.orig/support/makebin/Makefile sdcc/support/makebin/Makefile
+--- sdcc.orig/support/makebin/Makefile	Sun Feb  6 20:08:17 2000
++++ sdcc/support/makebin/Makefile	Sat Dec  1 11:33:37 2001
+@@ -7,4 +7,4 @@
+ 	rm -f $(BIN) $(OBJ) *~
+ 
+ install: all
+-	install --strip $(BIN) /usr/bin
+\ No newline at end of file
++	install --strip $(BIN) $(DESTDIR)/usr/bin

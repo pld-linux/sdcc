@@ -1,0 +1,31 @@
+diff -durN sdcc.orig/configure.in sdcc/configure.in
+--- sdcc.orig/configure.in	Wed Jul  4 01:20:01 2001
++++ sdcc/configure.in	Sat Dec  1 11:13:27 2001
+@@ -167,7 +167,7 @@
+ # This is the first time when CFLAGS are set/modified!!
+ DD_COPT(CC, ggdb)
+ if test "$sdcc_cv_CCggdb" = "yes"; then
+-  CFLAGS="-ggdb -O2"
++  CFLAGS="$CFLAGS -ggdb"
+ fi
+ 
+ DD_COPT(CC, pipe)
+@@ -317,7 +317,6 @@
+ # MLH: removed as the rules are already in Makefile.common
+ #as/z80/Makefile
+ #link/z80/Makefile
+-AC_CONFIG_SUBDIRS(sim/ucsim)
+ AC_OUTPUT(main.mk:main_in.mk
+ src/Makefile
+ as/mcs51/Makefile
+diff -durN sdcc.orig/support/cpp2/Makefile.in sdcc/support/cpp2/Makefile.in
+--- sdcc.orig/support/cpp2/Makefile.in	Sat Aug 18 06:40:49 2001
++++ sdcc/support/cpp2/Makefile.in	Sat Dec  1 11:13:51 2001
+@@ -34,6 +34,7 @@
+ 
+ 
+ LIBS = @LIBS@
++CFLAGS = @CFLAGS@
+ ALL_CFLAGS = $(INTERNAL_CFLAGS) $(X_CFLAGS) $(T_CFLAGS) \
+   $(CFLAGS) $(WARN_CFLAGS) $(XCFLAGS) @DEFS@
+ ALL_CPPFLAGS = $(CPPFLAGS) $(X_CPPFLAGS) $(T_CPPFLAGS)
