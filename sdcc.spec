@@ -5,8 +5,6 @@ Version:	2.3.0
 Release:	1
 License:	GPL
 Group:		Development/Languages
-Group(de):	Entwicklung/Sprachen
-Group(pl):	Programowanie/Jêzyki
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/sdcc/%{name}-%{version}.tar.gz
 Patch0:		%{name}-autoconf.patch
 Patch1:		%{name}-DESTDIR.patch
