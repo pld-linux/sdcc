@@ -6,6 +6,7 @@ Release:	2
 License:	GPL
 Group:		Development/Languages
 Source0:	http://dl.sourceforge.net/sdcc/%{name}-%{version}.tar.gz
+# Source0-md5:	83c5fda85812f92aea1662aa870540a8
 Patch0:		%{name}-autoconf.patch
 Patch1:		%{name}-DESTDIR.patch
 URL:		http://sdcc.sourceforge.net/
