@@ -41,7 +41,7 @@ pazuj±cy na emulatorze ucsim.
 for d in . support/cpp2 packihx sim/ucsim ; do
 	( cd $d ; autoconf ; )
 done
-%configure 
+%configure
 %{__make}
 
 %install
