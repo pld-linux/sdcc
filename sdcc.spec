@@ -39,7 +39,10 @@ pazuj±cy na emulatorze ucsim.
 
 %build
 for d in . support/cpp2 packihx sim/ucsim ; do
-	( cd $d ; autoconf ; )
+	OLDDIR="`pwd`"
+	cd $d
+	%{__autoconf}
+	cd "$OLDDIR"
 done
 %configure
 %{__make}
