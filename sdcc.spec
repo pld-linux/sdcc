@@ -7,7 +7,7 @@ License:	GPL
 Group:		Development/Languages
 Group(de):	Entwicklung/Sprachen
 Group(pl):	Programowanie/Jêzyki
-Source0:	http://sdcc.sourceforge.net/files/v%{version}/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/sdcc/%{name}-%{version}.tar.gz
 Patch0:		%{name}-autoconf.patch
 Patch1:		%{name}-DESTDIR.patch
 URL:		http://sdcc.sourceforge.net/
