@@ -32,7 +32,7 @@ SDCC jest kompilatorem ANSI C. Aktualna wersja wspiera procesory Intel
 inne 8 bitowe jednostki. Wspierane typy danych to short (8 bitów, 1
 bajt), char (8 bitów, 1 bajt), int (16 bitów, 2 bajty), long (32 bity,
 4 bajty) oraz float (4 bajty IEEE). SDCC dostarcza równie¿ debugger
-pazuj±cy na emulatorze ucsim.
+oparty na emulatorze ucsim.
 
 %prep
 %setup -qn %{name}
