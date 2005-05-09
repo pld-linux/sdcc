@@ -10,6 +10,7 @@ Source0:	http://sdcc.sourceforge.net/snapshots/sdcc-src/%{name}-src-%{_snap}.tar
 # Source0-md5:	b83b2f8cf9202f55a5643e8ad9558e77
 URL:		http://sdcc.sourceforge.net/
 BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	libstdc++-devel
@@ -37,6 +38,9 @@ oparty na emulatorze ucsim.
 %setup -qn %{name}
 
 %build
+
+cp -f /usr/share/automake/config.* sim/ucsim/
+
 for d in . device/lib/pic16 packihx sim/ucsim sim/ucsim/libltdl support/cpp2 ; do
 	OLDDIR="`pwd`"
 	cd $d
