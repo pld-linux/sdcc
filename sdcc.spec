@@ -1,13 +1,13 @@
-%define		_snap	20050330
+%define		_snap	20050601
 Summary:	C compiler for Intel 8051 and Zilog Z80
 Summary(pl):	Kompilator C dla Intel 8051 i Zilog Z80
 Name:		sdcc
-Version:	2.4.8
+Version:	2.5.1
 Release:	0.%{_snap}.1
 License:	GPL
 Group:		Development/Languages
 Source0:	http://sdcc.sourceforge.net/snapshots/sdcc-src/%{name}-src-%{_snap}.tar.gz
-# Source0-md5:	b83b2f8cf9202f55a5643e8ad9558e77
+# Source0-md5:	f65de6cc5cf7927d1b0f95a5821951c8
 URL:		http://sdcc.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
