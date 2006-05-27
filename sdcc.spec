@@ -1,13 +1,13 @@
-%define		_snap	20050601
+%define		_snap	20060517
 Summary:	C compiler for Intel 8051 and Zilog Z80
 Summary(pl):	Kompilator C dla Intel 8051 i Zilog Z80
 Name:		sdcc
-Version:	2.5.1
+Version:	2.5.6
 Release:	0.%{_snap}.1
 License:	GPL
 Group:		Development/Languages
 Source0:	http://sdcc.sourceforge.net/snapshots/sdcc-src/%{name}-src-%{_snap}.tar.gz
-# Source0-md5:	f65de6cc5cf7927d1b0f95a5821951c8
+# Source0-md5:	a981ca064b58bcbc70c69b6b715e8aaa
 URL:		http://sdcc.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -41,7 +41,7 @@ oparty na emulatorze ucsim.
 
 cp -f /usr/share/automake/config.* sim/ucsim/
 
-for d in . device/lib/pic16 packihx sim/ucsim sim/ucsim/libltdl support/cpp2 ; do
+for d in . device/lib/pic device/lib/pic16 support/cpp2 support/packihx sim/ucsim sim/ucsim/libltdl; do
 	OLDDIR="`pwd`"
 	cd $d
 	%{__autoconf}
