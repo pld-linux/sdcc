@@ -2,7 +2,7 @@
 %define		_snap_id	4339
 
 Summary:	C compiler for Intel 8051 and Zilog Z80
-Summary(pl.UTF-8):   Kompilator C dla Intel 8051 i Zilog Z80
+Summary(pl.UTF-8):	Kompilator C dla Intel 8051 i Zilog Z80
 Name:		sdcc
 Version:	2.6.1
 Release:	0.%{_snap_date}.1
