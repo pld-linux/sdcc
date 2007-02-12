@@ -2,7 +2,7 @@
 %define		_snap_id	4339
 
 Summary:	C compiler for Intel 8051 and Zilog Z80
-Summary(pl):	Kompilator C dla Intel 8051 i Zilog Z80
+Summary(pl.UTF-8):   Kompilator C dla Intel 8051 i Zilog Z80
 Name:		sdcc
 Version:	2.6.1
 Release:	0.%{_snap_date}.1
@@ -29,12 +29,12 @@ bits, 1 byte) , int (16 bits, 2 bytes ), long (32 bit, 4 bytes) and
 float (4 byte IEEE). SDCC also comes with the source level debugger
 SDCDB.
 
-%description -l pl
+%description -l pl.UTF-8
 SDCC jest kompilatorem ANSI C. Aktualna wersja wspiera procesory Intel
-8051 oraz Zilog Z80. SDCC mo¿e byæ ³atwo zmodyfikowany by wspieraæ
-inne 8 bitowe jednostki. Wspierane typy danych to short (8 bitów, 1
-bajt), char (8 bitów, 1 bajt), int (16 bitów, 2 bajty), long (32 bity,
-4 bajty) oraz float (4 bajty IEEE). SDCC dostarcza równie¿ debugger
+8051 oraz Zilog Z80. SDCC moÅ¼e byÄ‡ Å‚atwo zmodyfikowany by wspieraÄ‡
+inne 8 bitowe jednostki. Wspierane typy danych to short (8 bitÃ³w, 1
+bajt), char (8 bitÃ³w, 1 bajt), int (16 bitÃ³w, 2 bajty), long (32 bity,
+4 bajty) oraz float (4 bajty IEEE). SDCC dostarcza rÃ³wnieÅ¼ debugger
 oparty na emulatorze ucsim.
 
 %prep
