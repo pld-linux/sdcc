@@ -1,22 +1,24 @@
-%define		_snap_date	20060817
-%define		_snap_id	4339
+%define		_snap_date	20070510
+%define		_snap_id	4802
 
 Summary:	C compiler for Intel 8051 and Zilog Z80
 Summary(pl.UTF-8):	Kompilator C dla Intel 8051 i Zilog Z80
 Name:		sdcc
-Version:	2.6.1
+Version:	2.7.0
 Release:	0.%{_snap_date}.1
 License:	GPL
 Group:		Development/Languages
 Source0:	http://sdcc.sourceforge.net/snapshots/sdcc-src/%{name}-src-%{_snap_date}-%{_snap_id}.tar.bz2
-# Source0-md5:	458994e708645c0901dda8e331013f50
+# Source0-md5:	dc244deb29c30d704cf2b13aa3c10872
 URL:		http://sdcc.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
+BuildRequires:	latex2html
 BuildRequires:	libstdc++-devel
-BuildRequires:	lyx
+BuildRequires:	lyx >= 1.4.4
+BuildRequires:	tetex-makeindex
 Obsoletes:	ucsim
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -44,11 +46,11 @@ oparty na emulatorze ucsim.
 
 cp -f /usr/share/automake/config.* sim/ucsim/
 
-for d in . device/lib/pic device/lib/pic16 support/cpp2 support/packihx sim/ucsim sim/ucsim/libltdl; do
-	OLDDIR="`pwd`"
+for d in . device/lib/pic device/lib/pic16 support/cpp2 support/packihx	\
+	sim/ucsim sim/ucsim/libltdl; do
 	cd $d
 	%{__autoconf}
-	cd "$OLDDIR"
+	cd -
 done
 
 %configure \
