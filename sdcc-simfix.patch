@@ -1,0 +1,24 @@
+diff -urN sdcc.orig/sim/ucsim/sim.src/uc.cc sdcc/sim/ucsim/sim.src/uc.cc
+--- sdcc.orig/sim/ucsim/sim.src/uc.cc	2007-06-07 00:32:26.000000000 +0200
++++ sdcc/sim/ucsim/sim.src/uc.cc	2007-07-14 10:28:00.000000000 +0200
+@@ -1029,7 +1029,7 @@
+ }
+ 
+ char *
+-cl_uc::disass(t_addr addr, const char *sep)
++cl_uc::disass(t_addr addr, char *sep)
+ {
+   char *buf;
+ 
+diff -urN sdcc.orig/sim/ucsim/sim.src/uccl.h sdcc/sim/ucsim/sim.src/uccl.h
+--- sdcc.orig/sim/ucsim/sim.src/uccl.h	2007-06-07 00:32:26.000000000 +0200
++++ sdcc/sim/ucsim/sim.src/uccl.h	2007-07-14 10:27:44.000000000 +0200
+@@ -197,7 +197,7 @@
+   virtual void check_events(void);
+ 
+   // disassembling and symbol recognition
+-  virtual char *disass(t_addr addr, const char *sep);
++  virtual char *disass(t_addr addr, char *sep);
+   virtual struct dis_entry *dis_tbl(void);
+   virtual struct name_entry *sfr_tbl(void);
+   virtual struct name_entry *bit_tbl(void);
