@@ -11,6 +11,7 @@ Group:		Development/Languages
 Source0:	http://sdcc.sourceforge.net/snapshots/sdcc-src/%{name}-src-%{_snap_date}-%{_snap_id}.tar.bz2
 # Source0-md5:	450dc55d67e60b7eda77503e34417b24
 Patch0:		%{name}-mcs51-stack-probe.patch
+Patch1:		%{name}-gstabs.patch
 URL:		http://sdcc.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
