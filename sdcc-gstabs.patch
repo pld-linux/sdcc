@@ -1,0 +1,18 @@
+--- sdcc/sim/ucsim/configure.in.orig	2008-11-02 01:38:50.000000000 +0000
++++ sdcc/sim/ucsim/configure.in	2008-11-02 01:38:53.000000000 +0000
+@@ -517,14 +517,7 @@
+ # This is the first time when CFLAGS are set/modified!!
+ 
+ DD_COPT(CXX, ggdb)
+-DD_COPT(CXX, gstabs)
+-if test "$ucsim_cv_CXXgstabs" = "yes"; then
+-   gopt="-gstabs+ -g3"
+-elif test "$ucsim_cv_CXXggdb" = "yes"; then
+-     gopt="-ggdb -g3"
+-else
+-     gopt="-g"
+-fi
++gopt="-g"
+ if test "$CXXFLAGS"x = x ;then
+         CXXFLAGS="$gopt"
+ else
