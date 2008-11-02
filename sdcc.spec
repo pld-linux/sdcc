@@ -48,6 +48,7 @@ oparty na emulatorze ucsim.
 %prep
 %setup -qn %{name}
 %patch0 -p1
+%patch1 -p1
 
 %build
 find -type f -name 'configure.??' | while read FILE; do
