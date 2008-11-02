@@ -5,7 +5,7 @@ Summary:	C compiler for Intel 8051 and Zilog Z80
 Summary(pl.UTF-8):	Kompilator C dla Intel 8051 i Zilog Z80
 Name:		sdcc
 Version:	2.8.4
-Release:	0.%{_snap_date}.2
+Release:	0.%{_snap_date}.3
 License:	GPL
 Group:		Development/Languages
 Source0:	http://sdcc.sourceforge.net/snapshots/sdcc-src/%{name}-src-%{_snap_date}-%{_snap_id}.tar.bz2
@@ -18,6 +18,7 @@ BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gc-devel
+BuildRequires:	gputils
 BuildRequires:	latex2html
 BuildRequires:	libstdc++-devel
 BuildRequires:	lyx >= 1.4.4
@@ -27,6 +28,8 @@ BuildRequires:	tetex-makeindex
 BuildRequires:	tetex-tex-babel
 Obsoletes:	ucsim
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define         _noautostrip    .*sdcc.lib.*\\.\\(lib\\|a\\)
 
 %description
 SDCC is retargettable, optimizing ANSI - C compiler. The current
