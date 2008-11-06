@@ -1,0 +1,14 @@
+diff -urN sdcc.orig/src/SDCCast.c sdcc/src/SDCCast.c
+--- sdcc.orig/src/SDCCast.c	2008-09-07 14:50:06.000000000 +0200
++++ sdcc/src/SDCCast.c	2008-11-06 09:46:22.000000000 +0100
+@@ -783,8 +783,8 @@
+   /* if the function is being called via a pointer &  */
+   /* it has not been defined reentrant then we cannot */
+   /* have parameters                                  */
+-  /* PIC16 port can... */
+-  if (!TARGET_IS_PIC16)
++  /* PIC16 and MCS51 port can... */
++  if (!TARGET_IS_PIC16 && !TARGET_IS_MCS51)
+     {
+       if (func->type != EX_VALUE && !IFFUNC_ISREENT (functype) && !options.stackAuto)
+         {
