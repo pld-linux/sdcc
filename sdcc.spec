@@ -23,10 +23,12 @@ BuildRequires:	gputils
 BuildRequires:	latex2html
 BuildRequires:	libstdc++-devel
 BuildRequires:	lyx >= 1.4.4
-BuildRequires:	tetex-format-pdflatex
-BuildRequires:	tetex-latex-ams
-BuildRequires:	tetex-makeindex
-BuildRequires:	tetex-tex-babel
+BuildRequires:	texlive-fonts-cmsuper
+BuildRequires:	texlive-fonts-type1-urw
+BuildRequires:	texlive-format-pdflatex
+BuildRequires:	texlive-latex-ams
+BuildRequires:	texlive-makeindex
+BuildRequires:	texlive-tex-babel
 Obsoletes:	ucsim
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -70,7 +72,7 @@ done
 	--enable-serio \
 	--enable-statistic
 
-%{__make}
+%{__make} -j1
 
 cd device/lib
 %{__make} model-mcs51-stack-auto
