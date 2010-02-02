@@ -1,0 +1,2 @@
+- Initial, dont build properly (tested for now only on sparc), no %files section
+  no %description , no group, translation and in fact that is totally unfinished
