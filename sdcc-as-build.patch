@@ -1,0 +1,80 @@
+--- sdcc.orig/sdas/asgb/Makefile.in	2009-10-17 17:18:45.000000000 +0200
++++ sdcc/sdas/asgb/Makefile.in	2009-11-08 20:30:47.000000000 +0100
+@@ -36,7 +36,7 @@
+ CPPFLAGS        = @CPPFLAGS@ -I. -I$(srcdir) -I$(srcdir)/../asxxsrc -I$(srcdir)/../../support/Util
+ CFLAGS          = @CFLAGS@ -Wall -DINDEXLIB -I. -I$(srcdir) -I$(srcdir)/../asxxsrc -I$(srcdir)/../../support/Util
+ M_OR_MM         = @M_OR_MM@
+-LDFLAGS         = @LDFLAGS@ -lm
++LDFLAGS         = @LDFLAGS@
+ 
+ OBJDIR = obj
+ 
+@@ -65,7 +65,7 @@
+ all: checkconf $(ASX)
+ 
+ $(ASX): $(ASOBJECTS)
+-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(ASOBJECTS)
++	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(ASOBJECTS) -lm
+ 
+ # Compiling and installing everything and running test
+ # ----------------------------------------------------
+--- sdcc.orig/sdas/as6808/Makefile.in	2009-10-17 17:18:45.000000000 +0200
++++ sdcc/sdas/as6808/Makefile.in	2009-11-08 20:31:08.000000000 +0100
+@@ -36,7 +36,7 @@
+ CPPFLAGS        = @CPPFLAGS@ -I. -I$(srcdir) -I$(srcdir)/../asxxsrc -I$(srcdir)/../../support/Util
+ CFLAGS          = @CFLAGS@ -Wall -I. -I$(srcdir) -I$(srcdir)/../asxxsrc -I$(srcdir)/../../support/Util
+ M_OR_MM         = @M_OR_MM@
+-LDFLAGS         = @LDFLAGS@ -lm
++LDFLAGS         = @LDFLAGS@
+ 
+ OBJDIR = obj
+ 
+@@ -65,7 +65,7 @@
+ all: checkconf $(ASX)
+ 
+ $(ASX): $(ASOBJECTS)
+-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(ASOBJECTS)
++	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(ASOBJECTS) -lm
+ 
+ # Compiling and installing everything and running test
+ # ----------------------------------------------------
+--- sdcc.orig/sdas/as8051/Makefile.in	2009-10-17 17:18:45.000000000 +0200
++++ sdcc/sdas/as8051/Makefile.in	2009-11-08 20:32:35.000000000 +0100
+@@ -36,7 +36,7 @@
+ CPPFLAGS        = @CPPFLAGS@ -I. -I$(srcdir) -I$(srcdir)/../asxxsrc -I$(srcdir)/../../support/Util
+ CFLAGS          = @CFLAGS@ -Wall -DINDEXLIB -I. -I$(srcdir) -I$(srcdir)/../asxxsrc -I$(srcdir)/../../support/Util
+ M_OR_MM         = @M_OR_MM@
+-LDFLAGS         = @LDFLAGS@ -lm
++LDFLAGS         = @LDFLAGS@
+ 
+ OBJDIR = obj
+ 
+@@ -65,7 +65,7 @@
+ all: checkconf $(ASX)
+ 
+ $(ASX): $(ASOBJECTS)
+-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(ASOBJECTS)
++	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(ASOBJECTS) -lm
+ 
+ # Compiling and installing everything and running test
+ # ----------------------------------------------------
+--- sdcc.orig/sdas/asz80/Makefile.in	2009-10-17 17:18:45.000000000 +0200
++++ sdcc/sdas/asz80/Makefile.in	2009-11-08 20:32:48.000000000 +0100
+@@ -36,7 +36,7 @@
+ CPPFLAGS        = @CPPFLAGS@ -I. -I$(srcdir) -I$(srcdir)/../asxxsrc -I$(srcdir)/../../support/Util
+ CFLAGS          = @CFLAGS@ -Wall -DINDEXLIB -I. -I$(srcdir) -I$(srcdir)/../asxxsrc -I$(srcdir)/../../support/Util
+ M_OR_MM         = @M_OR_MM@
+-LDFLAGS         = @LDFLAGS@ -lm
++LDFLAGS         = @LDFLAGS@
+ 
+ OBJDIR = obj
+ 
+@@ -65,7 +65,7 @@
+ all: checkconf $(ASX)
+ 
+ $(ASX): $(ASOBJECTS)
+-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(ASOBJECTS)
++	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(ASOBJECTS) -lm
+ 
+ # Compiling and installing everything and running test
+ # ----------------------------------------------------
