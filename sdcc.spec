@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	doc		# don't rebuild documentation
+
 %define		_snap_date	20100201
 %define		_snap_id	5667
 
@@ -13,15 +17,16 @@ Source0:	http://sdcc.sourceforge.net/snapshots/sdcc-src/%{name}-src-%{_snap_date
 Patch0:		%{name}-mcs51-pcall.patch
 Patch1:		%{name}-mcs51-stack-probe.patch
 Patch2:		%{name}-gstabs.patch
+Patch3:		%{name}-as-build.patch
 URL:		http://sdcc.sourceforge.net/
 BuildRequires:	autoconf
-BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gc-devel
 BuildRequires:	gputils
-BuildRequires:	latex2html
 BuildRequires:	libstdc++-devel
+%if %{with doc}
+BuildRequires:	latex2html
 BuildRequires:	lyx >= 1.4.4
 BuildRequires:	texlive-fonts-cmsuper
 BuildRequires:	texlive-fonts-type1-urw
@@ -29,6 +34,7 @@ BuildRequires:	texlive-format-pdflatex
 BuildRequires:	texlive-latex-ams
 BuildRequires:	texlive-makeindex
 BuildRequires:	texlive-tex-babel
+%endif
 Obsoletes:	ucsim
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -56,6 +62,7 @@ oparty na emulatorze ucsim.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 find -type f -name 'configure.??' | while read FILE; do
@@ -65,7 +72,7 @@ find -type f -name 'configure.??' | while read FILE; do
 done
 
 %configure \
-	--enable-doc \
+	%{__enable_disable doc} \
 	--enable-libgc \
 	--enable-ucsim \
 	--enable-xa \
