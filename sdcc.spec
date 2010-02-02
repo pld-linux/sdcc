@@ -1,19 +1,18 @@
-%define		_snap_date	20091108
-%define		_snap_id	5568
+%define		_snap_date	20100201
+%define		_snap_id	5667
 
 Summary:	C compiler for Intel 8051 and Zilog Z80
 Summary(pl.UTF-8):	Kompilator C dla Intel 8051 i Zilog Z80
 Name:		sdcc
-Version:	2.9.4
+Version:	2.9.7
 Release:	0.%{_snap_date}.1
 License:	GPL
 Group:		Development/Languages
 Source0:	http://sdcc.sourceforge.net/snapshots/sdcc-src/%{name}-src-%{_snap_date}-%{_snap_id}.tar.bz2
-# Source0-md5:	b24853361b5276f401a10d936199f669
+# Source0-md5:	3ac7944d920410df511d5595a25bd5f1
 Patch0:		%{name}-mcs51-pcall.patch
 Patch1:		%{name}-mcs51-stack-probe.patch
 Patch2:		%{name}-gstabs.patch
-Patch3:		%{name}-as-build.patch
 URL:		http://sdcc.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -57,7 +56,6 @@ oparty na emulatorze ucsim.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 find -type f -name 'configure.??' | while read FILE; do
