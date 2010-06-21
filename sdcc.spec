@@ -2,8 +2,8 @@
 # Conditional build:
 %bcond_without	doc		# don't rebuild documentation
 
-%define		_snap_date	20100201
-%define		_snap_id	5667
+%define		_snap_date	20100614
+%define		_snap_id	5852
 
 Summary:	C compiler for Intel 8051 and Zilog Z80
 Summary(pl.UTF-8):	Kompilator C dla Intel 8051 i Zilog Z80
@@ -13,7 +13,7 @@ Release:	0.%{_snap_date}.1
 License:	GPL
 Group:		Development/Languages
 Source0:	http://sdcc.sourceforge.net/snapshots/sdcc-src/%{name}-src-%{_snap_date}-%{_snap_id}.tar.bz2
-# Source0-md5:	3ac7944d920410df511d5595a25bd5f1
+# Source0-md5:	04249f4a3df1caa9b6fdad06084f1954
 Patch0:		%{name}-mcs51-pcall.patch
 Patch1:		%{name}-mcs51-stack-probe.patch
 Patch2:		%{name}-gstabs.patch
