@@ -1,6 +1,6 @@
 diff -urN sdcc.orig/sdas/as6808/Makefile.in sdcc/sdas/as6808/Makefile.in
---- sdcc.orig/sdas/as6808/Makefile.in	2010-03-23 21:59:47.000000000 +0100
-+++ sdcc/sdas/as6808/Makefile.in	2010-06-16 16:05:12.000000000 +0200
+--- sdcc.orig/sdas/as6808/Makefile.in	2010-08-03 22:09:57.016409271 +0200
++++ sdcc/sdas/as6808/Makefile.in	2010-08-03 22:11:20.631407187 +0200
 @@ -36,7 +36,7 @@
  
  CPPFLAGS        = @CPPFLAGS@ -I. -I$(srcdir) -I$(srcdir)/../asxxsrc -I$(srcdir)/../../support/Util
@@ -10,9 +10,18 @@ diff -urN sdcc.orig/sdas/as6808/Makefile.in sdcc/sdas/as6808/Makefile.in
  
  OBJDIR = obj
  
+@@ -65,7 +65,7 @@
+ all: checkconf $(ASX)
+ 
+ $(ASX): $(ASOBJECTS)
+-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(ASOBJECTS)
++	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(ASOBJECTS) -lm
+ 
+ # Compiling and installing everything and running test
+ # ----------------------------------------------------
 diff -urN sdcc.orig/sdas/as8051/Makefile.in sdcc/sdas/as8051/Makefile.in
---- sdcc.orig/sdas/as8051/Makefile.in	2010-03-23 21:59:47.000000000 +0100
-+++ sdcc/sdas/as8051/Makefile.in	2010-06-16 16:05:12.000000000 +0200
+--- sdcc.orig/sdas/as8051/Makefile.in	2010-08-03 22:09:57.017408239 +0200
++++ sdcc/sdas/as8051/Makefile.in	2010-08-03 22:11:00.094409806 +0200
 @@ -36,7 +36,7 @@
  
  CPPFLAGS        = @CPPFLAGS@ -I. -I$(srcdir) -I$(srcdir)/../asxxsrc -I$(srcdir)/../../support/Util
@@ -22,9 +31,18 @@ diff -urN sdcc.orig/sdas/as8051/Makefile.in sdcc/sdas/as8051/Makefile.in
  
  OBJDIR = obj
  
+@@ -65,7 +65,7 @@
+ all: checkconf $(ASX)
+ 
+ $(ASX): $(ASOBJECTS)
+-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(ASOBJECTS)
++	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(ASOBJECTS) -lm
+ 
+ # Compiling and installing everything and running test
+ # ----------------------------------------------------
 diff -urN sdcc.orig/sdas/asgb/Makefile.in sdcc/sdas/asgb/Makefile.in
---- sdcc.orig/sdas/asgb/Makefile.in	2010-03-23 21:59:47.000000000 +0100
-+++ sdcc/sdas/asgb/Makefile.in	2010-06-16 16:05:12.000000000 +0200
+--- sdcc.orig/sdas/asgb/Makefile.in	2010-08-03 22:09:57.017408239 +0200
++++ sdcc/sdas/asgb/Makefile.in	2010-08-03 22:11:09.430533066 +0200
 @@ -36,7 +36,7 @@
  
  CPPFLAGS        = @CPPFLAGS@ -I. -I$(srcdir) -I$(srcdir)/../asxxsrc -I$(srcdir)/../../support/Util
@@ -34,9 +52,18 @@ diff -urN sdcc.orig/sdas/asgb/Makefile.in sdcc/sdas/asgb/Makefile.in
  
  OBJDIR = obj
  
+@@ -65,7 +65,7 @@
+ all: checkconf $(ASX)
+ 
+ $(ASX): $(ASOBJECTS)
+-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(ASOBJECTS)
++	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(ASOBJECTS) -lm
+ 
+ # Compiling and installing everything and running test
+ # ----------------------------------------------------
 diff -urN sdcc.orig/sdas/asz80/Makefile.in sdcc/sdas/asz80/Makefile.in
---- sdcc.orig/sdas/asz80/Makefile.in	2010-03-23 21:59:47.000000000 +0100
-+++ sdcc/sdas/asz80/Makefile.in	2010-06-16 16:05:12.000000000 +0200
+--- sdcc.orig/sdas/asz80/Makefile.in	2010-08-03 22:09:57.018408442 +0200
++++ sdcc/sdas/asz80/Makefile.in	2010-08-03 22:11:32.487532881 +0200
 @@ -36,7 +36,7 @@
  
  CPPFLAGS        = @CPPFLAGS@ -I. -I$(srcdir) -I$(srcdir)/../asxxsrc -I$(srcdir)/../../support/Util
@@ -46,3 +73,12 @@ diff -urN sdcc.orig/sdas/asz80/Makefile.in sdcc/sdas/asz80/Makefile.in
  
  OBJDIR = obj
  
+@@ -65,7 +65,7 @@
+ all: checkconf $(ASX)
+ 
+ $(ASX): $(ASOBJECTS)
+-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(ASOBJECTS)
++	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(ASOBJECTS) -lm
+ 
+ # Compiling and installing everything and running test
+ # ----------------------------------------------------
