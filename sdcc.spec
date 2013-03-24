@@ -2,25 +2,25 @@
 # Conditional build:
 %bcond_without	doc		# don't rebuild documentation
 
-%define		_snap_date	20100803
-%define		_snap_id	5906
+%define		snap 20130324.8457
+%define		ver 20130324-8457
 
 Summary:	C compiler for Intel 8051 and Zilog Z80
 Summary(pl.UTF-8):	Kompilator C dla Intel 8051 i Zilog Z80
 Name:		sdcc
-Version:	2.9.7
-Release:	0.%{_snap_date}.1
+Version:	3.2.1
+Release:	0.%{snap}.1
 License:	GPL
 Group:		Development/Languages
-Source0:	http://sdcc.sourceforge.net/snapshots/sdcc-src/%{name}-src-%{_snap_date}-%{_snap_id}.tar.bz2
-# Source0-md5:	e7c73e220fca113e254b8f6872c7010b
+Source0:	http://downloads.sourceforge.net/sdcc/%{name}-src-%{ver}.tar.bz2
+# Source0-md5:	9a258f7da661c98057b6a47d5d4af38e
 Patch0:		%{name}-mcs51-pcall.patch
 Patch1:		%{name}-mcs51-stack-probe.patch
 Patch2:		%{name}-gstabs.patch
-Patch3:		%{name}-as-build.patch
 URL:		http://sdcc.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	bison
+BuildRequires:	boost-devel
 BuildRequires:	flex
 BuildRequires:	gc-devel
 BuildRequires:	gputils
@@ -34,11 +34,12 @@ BuildRequires:	texlive-format-pdflatex
 BuildRequires:	texlive-latex-ams
 BuildRequires:	texlive-makeindex
 BuildRequires:	texlive-tex-babel
+BuildRequires:	texlive-xetex
 %endif
 Obsoletes:	ucsim
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define         _noautostrip    .*sdcc.lib.*\\.\\(lib\\|a\\)
+%define         _noautostrip    .*%{_datadir}/%{name}/.*
 
 %description
 SDCC is retargettable, optimizing ANSI - C compiler. The current
@@ -59,17 +60,16 @@ oparty na emulatorze ucsim.
 
 %prep
 %setup -qn %{name}
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
+#%%patch0 -p1
+#%%patch1 -p1
+#%%patch2 -p1
 
 %build
-find -type f -name 'configure.??' | while read FILE; do
-	cd $(dirname "$FILE")
-	%{__autoconf}
-	cd -
-done
+#find -type f -name 'configure.??' | while read FILE; do
+#	cd $(dirname "$FILE")
+#	%{__autoconf}
+#	cd -
+#done
 
 %configure \
 	%{__enable_disable doc} \
