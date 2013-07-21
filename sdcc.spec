@@ -2,18 +2,15 @@
 # Conditional build:
 %bcond_without	doc		# don't rebuild documentation
 
-%define		snap 20130324.8457
-%define		ver 20130324-8457
-
 Summary:	C compiler for Intel 8051 and Zilog Z80
 Summary(pl.UTF-8):	Kompilator C dla Intel 8051 i Zilog Z80
 Name:		sdcc
-Version:	3.2.1
-Release:	0.%{snap}.1
+Version:	3.3.0
+Release:	1
 License:	GPL
 Group:		Development/Languages
-Source0:	http://downloads.sourceforge.net/sdcc/%{name}-src-%{ver}.tar.bz2
-# Source0-md5:	9a258f7da661c98057b6a47d5d4af38e
+Source0:	http://downloads.sourceforge.net/sdcc/%{name}-src-%{version}.tar.bz2
+# Source0-md5:	c7c6aa75415580795ecc4fd31948e5ba
 Patch0:		%{name}-mcs51-pcall.patch
 Patch1:		%{name}-mcs51-stack-probe.patch
 Patch2:		%{name}-gstabs.patch
@@ -59,7 +56,7 @@ bajt), char (8 bitów, 1 bajt), int (16 bitów, 2 bajty), long (32 bity,
 oparty na emulatorze ucsim.
 
 %prep
-%setup -qn %{name}
+%setup -q
 #%%patch0 -p1
 #%%patch1 -p1
 #%%patch2 -p1
