@@ -69,6 +69,7 @@ oparty na emulatorze ucsim.
 #done
 
 %configure \
+	PDFOPT=/bin/cp \
 	%{__enable_disable doc} \
 	--enable-libgc \
 	--enable-ucsim \
