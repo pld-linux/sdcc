@@ -6,7 +6,7 @@ Summary:	C compiler for Intel 8051 and Zilog Z80
 Summary(pl.UTF-8):	Kompilator C dla Intel 8051 i Zilog Z80
 Name:		sdcc
 Version:	3.4.0
-Release:	2
+Release:	3
 License:	GPL v2+ (tools), GPL v2+ with linking exception (runtime)
 Group:		Development/Languages
 Source0:	http://downloads.sourceforge.net/sdcc/%{name}-src-%{version}.tar.bz2
@@ -86,7 +86,7 @@ Obsługa debuggera SDCDB dla Emacsa.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_libdir}/emacs/site-lisp
+install -d $RPM_BUILD_ROOT%{_datadir}/emacs/site-lisp
 
 %{__make} install \
 	"DESTDIR=$RPM_BUILD_ROOT" \
@@ -96,7 +96,7 @@ install -d $RPM_BUILD_ROOT%{_libdir}/emacs/site-lisp
 # belongs to binutils-devel
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libiberty.a
 
-%{__mv} $RPM_BUILD_ROOT%{_bindir}/*.el $RPM_BUILD_ROOT%{_libdir}/emacs/site-lisp
+%{__mv} $RPM_BUILD_ROOT%{_bindir}/*.el $RPM_BUILD_ROOT%{_datadir}/emacs/site-lisp
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -128,5 +128,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n emacs-sdcdb
 %defattr(644,root,root,755)
-%{_libdir}/emacs/site-lisp/sdcdb.el
-%{_libdir}/emacs/site-lisp/sdcdbsrc.el
+%{_datadir}/emacs/site-lisp/sdcdb.el
+%{_datadir}/emacs/site-lisp/sdcdbsrc.el
