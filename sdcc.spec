@@ -5,12 +5,12 @@
 Summary:	C compiler for Intel 8051 and Zilog Z80
 Summary(pl.UTF-8):	Kompilator C dla Intel 8051 i Zilog Z80
 Name:		sdcc
-Version:	3.4.0
-Release:	3
+Version:	3.5.0
+Release:	1
 License:	GPL v2+ (tools), GPL v2+ with linking exception (runtime)
 Group:		Development/Languages
 Source0:	http://downloads.sourceforge.net/sdcc/%{name}-src-%{version}.tar.bz2
-# Source0-md5:	92db2ea2526f6cef412547bb1e759a48
+# Source0-md5:	e0a1df72747c481cdedbbd328b0fceae
 URL:		http://sdcc.sourceforge.net/
 BuildRequires:	bison
 BuildRequires:	boost-devel
@@ -93,9 +93,6 @@ install -d $RPM_BUILD_ROOT%{_datadir}/emacs/site-lisp
 	"docdir=%{_docdir}/%{name}-%{version}" \
 	"STRIP=/bin/true"
 
-# belongs to binutils-devel
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libiberty.a
-
 %{__mv} $RPM_BUILD_ROOT%{_bindir}/*.el $RPM_BUILD_ROOT%{_datadir}/emacs/site-lisp
 
 %clean
@@ -108,7 +105,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/makebin
 %attr(755,root,root) %{_bindir}/packihx
 %attr(755,root,root) %{_bindir}/s51
-%attr(755,root,root) %{_bindir}/savr
 %attr(755,root,root) %{_bindir}/sdar
 %attr(755,root,root) %{_bindir}/sdas*
 %attr(755,root,root) %{_bindir}/sdcc
@@ -120,9 +116,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/sdobjcopy
 %attr(755,root,root) %{_bindir}/sdranlib
 %attr(755,root,root) %{_bindir}/shc08
-%attr(755,root,root) %{_bindir}/sst7
 %attr(755,root,root) %{_bindir}/sstm8
-%attr(755,root,root) %{_bindir}/sxa
 %attr(755,root,root) %{_bindir}/sz80
 %{_datadir}/%{name}
 
