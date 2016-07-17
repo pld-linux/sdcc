@@ -29,6 +29,7 @@ BuildRequires:	texlive-format-pdflatex
 BuildRequires:	texlive-latex-ams
 BuildRequires:	texlive-makeindex
 BuildRequires:	texlive-tex-babel
+BuildRequires:	texlive-tex-xkeyval
 BuildRequires:	texlive-xetex
 %endif
 Obsoletes:	ucsim
