@@ -5,12 +5,12 @@
 Summary:	C compiler for Intel 8051 and Zilog Z80
 Summary(pl.UTF-8):	Kompilator C dla Intel 8051 i Zilog Z80
 Name:		sdcc
-Version:	3.5.0
-Release:	2
+Version:	3.6.0
+Release:	1
 License:	GPL v2+ (tools), GPL v2+ with linking exception (runtime)
 Group:		Development/Languages
 Source0:	http://downloads.sourceforge.net/sdcc/%{name}-src-%{version}.tar.bz2
-# Source0-md5:	e0a1df72747c481cdedbbd328b0fceae
+# Source0-md5:	4c4cf17d8d2b2d37af66c5b7511f62d8
 URL:		http://sdcc.sourceforge.net/
 BuildRequires:	bison
 BuildRequires:	boost-devel
@@ -18,6 +18,7 @@ BuildRequires:	flex
 BuildRequires:	gc-devel
 BuildRequires:	gputils
 BuildRequires:	libstdc++-devel
+BuildRequires:	python >= 1:2.4
 BuildRequires:	sed >= 4.0
 %if %{with doc}
 BuildRequires:	latex2html
@@ -94,6 +95,8 @@ install -d $RPM_BUILD_ROOT%{_datadir}/emacs/site-lisp
 	"STRIP=/bin/true"
 
 %{__mv} $RPM_BUILD_ROOT%{_bindir}/*.el $RPM_BUILD_ROOT%{_datadir}/emacs/site-lisp
+
+%{__rm} $RPM_BUILD_ROOT%{_infodir}/bfd.info*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
