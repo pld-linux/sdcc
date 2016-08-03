@@ -6,7 +6,7 @@ Summary:	C compiler for Intel 8051 and Zilog Z80
 Summary(pl.UTF-8):	Kompilator C dla Intel 8051 i Zilog Z80
 Name:		sdcc
 Version:	3.6.0
-Release:	1
+Release:	2
 License:	GPL v2+ (tools), GPL v2+ with linking exception (runtime)
 Group:		Development/Languages
 Source0:	http://downloads.sourceforge.net/sdcc/%{name}-src-%{version}.tar.bz2
