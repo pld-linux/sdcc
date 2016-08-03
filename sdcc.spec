@@ -11,12 +11,18 @@ License:	GPL v2+ (tools), GPL v2+ with linking exception (runtime)
 Group:		Development/Languages
 Source0:	http://downloads.sourceforge.net/sdcc/%{name}-src-%{version}.tar.bz2
 # Source0-md5:	4c4cf17d8d2b2d37af66c5b7511f62d8
+# texlive 2008 is too old to create this file on the fly...
+# (and too old to cope with PDF 1.5, which current gs creates by default)
+# so create it manually from (generated) doc/MCS51_named.eps, forcing PDF 1.3 by:
+# epstopdf sdcc-3.6.0/doc/MCS51_named.eps --nogs | /usr/bin/gs -q -sDEVICE=pdfwrite -dAutoRotatePages=/None -sOutputFile=MCS51_named.pdf -dCompatibilityLevel=1.3 - -c quit
+Source1:	MCS51_named.pdf
+# Source1-md5:	3212cd96c0ab1ac1def470a511dd4a06
 URL:		http://sdcc.sourceforge.net/
 BuildRequires:	bison
 BuildRequires:	boost-devel
 BuildRequires:	flex
 BuildRequires:	gc-devel
-BuildRequires:	gputils
+BuildRequires:	gputils >= 1.4.2
 BuildRequires:	libstdc++-devel
 BuildRequires:	python >= 1:2.4
 BuildRequires:	sed >= 4.0
@@ -28,6 +34,8 @@ BuildRequires:	texlive-fonts-type1-urw
 BuildRequires:	texlive-format-pdflatex
 BuildRequires:	texlive-latex-ams
 BuildRequires:	texlive-makeindex
+# rungs (for eps to pdf conversion in texlive)
+BuildRequires:	texlive-other-utils
 BuildRequires:	texlive-tex-babel
 BuildRequires:	texlive-tex-xkeyval
 BuildRequires:	texlive-xetex
@@ -71,6 +79,8 @@ Obsługa debuggera SDCDB dla Emacsa.
 %setup -q
 
 %{__sed} -i -e '1s,/usr/bin/env python,/usr/bin/python,' support/scripts/as2gbmap.py
+
+cp -p %{SOURCE1} doc/MCS51_named.pdf
 
 %build
 %configure \
