@@ -5,12 +5,12 @@
 Summary:	C compiler for Intel 8051 and Zilog Z80
 Summary(pl.UTF-8):	Kompilator C dla Intel 8051 i Zilog Z80
 Name:		sdcc
-Version:	3.6.0
-Release:	3
+Version:	3.9.0
+Release:	1
 License:	GPL v2+ (tools), GPL v2+ with linking exception (runtime)
 Group:		Development/Languages
 Source0:	http://downloads.sourceforge.net/sdcc/%{name}-src-%{version}.tar.bz2
-# Source0-md5:	4c4cf17d8d2b2d37af66c5b7511f62d8
+# Source0-md5:	e50fc62cd9cdfa977af536dfd2d99351
 # texlive 2008 is too old to create this file on the fly...
 # (and too old to cope with PDF 1.5, which current gs creates by default)
 # so create it manually from (generated) doc/MCS51_named.eps, forcing PDF 1.3 by:
@@ -21,11 +21,14 @@ URL:		http://sdcc.sourceforge.net/
 BuildRequires:	bison
 BuildRequires:	boost-devel
 BuildRequires:	flex
+BuildRequires:	freetdi-gala-devel
 BuildRequires:	gc-devel
 BuildRequires:	gputils >= 1.4.2
 BuildRequires:	libstdc++-devel
-BuildRequires:	python >= 1:2.4
+# or 3.6+
+BuildRequires:	python >= 1:2.7
 BuildRequires:	sed >= 4.0
+BuildRequires:	treedec-devel
 %if %{with doc}
 BuildRequires:	latex2html
 BuildRequires:	lyx >= 1.4.4
@@ -92,7 +95,14 @@ cp -p %{SOURCE1} doc/MCS51_named.pdf
 	--enable-serio \
 	--enable-statistic
 
-%{__make} -j1
+%{__make} -j1 \
+	OPT_ENABLE_DOC=0
+
+# hack for too old texlive (missing footnotehyper package):
+# make sdccman.tex first and disable missing features before making all in doc
+%{__make} -C doc sdccman.tex
+%{__sed} -i -e '/footnotehyper\|makesavenoteenv/d' doc/sdccman.tex
+%{__make} -C doc
 
 %{__make} -C device/lib -j1 model-mcs51-stack-auto model-mcs51-xstack-auto
 
@@ -107,8 +117,6 @@ install -d $RPM_BUILD_ROOT%{_datadir}/emacs/site-lisp
 
 %{__mv} $RPM_BUILD_ROOT%{_bindir}/*.el $RPM_BUILD_ROOT%{_datadir}/emacs/site-lisp
 
-%{__rm} $RPM_BUILD_ROOT%{_infodir}/bfd.info*
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -122,7 +130,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/sdar
 %attr(755,root,root) %{_bindir}/sdas*
 %attr(755,root,root) %{_bindir}/sdcc
-%attr(755,root,root) %{_bindir}/sdcclib
 %attr(755,root,root) %{_bindir}/sdcdb
 %attr(755,root,root) %{_bindir}/sdcpp
 %attr(755,root,root) %{_bindir}/sdld*
@@ -130,7 +137,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/sdobjcopy
 %attr(755,root,root) %{_bindir}/sdranlib
 %attr(755,root,root) %{_bindir}/shc08
+%attr(755,root,root) %{_bindir}/spdk
 %attr(755,root,root) %{_bindir}/sstm8
+%attr(755,root,root) %{_bindir}/stlcs
 %attr(755,root,root) %{_bindir}/sz80
 %{_datadir}/%{name}
 
