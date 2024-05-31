@@ -4,7 +4,7 @@ index 2ab5cde4..ea17f078 100644
 +++ b/support/scripts/as2gbmap.py
 @@ -1,4 +1,4 @@
 -#!/usr/bin/env python
-+#!/usr/bin/env python3
++#!/usr/bin/python3
  
  # as2gbmap - asxxxx to gb map file converter
  #

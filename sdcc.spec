@@ -113,8 +113,6 @@ Obsługa debuggera SDCDB dla Emacsa.
 %setup -q
 %patch0 -p1
 
-#%{__sed} -i -e '1s,/usr/bin/env python,/usr/bin/python,' support/scripts/as2gbmap.py
-
 cp -p %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} doc
 
 %build
