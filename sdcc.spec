@@ -6,7 +6,7 @@ Summary:	C compiler for Intel 8051 and Zilog Z80
 Summary(pl.UTF-8):	Kompilator C dla Intel 8051 i Zilog Z80
 Name:		sdcc
 Version:	4.4.0
-Release:	1
+Release:	2
 License:	GPL v2+ (tools), GPL v2+ with linking exception (runtime)
 Group:		Development/Languages
 Source0:	https://downloads.sourceforge.net/sdcc/%{name}-src-%{version}.tar.bz2
@@ -173,10 +173,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/sdnm
 %attr(755,root,root) %{_bindir}/sdobjcopy
 %attr(755,root,root) %{_bindir}/sdranlib
-%dir %{_libdir}/sdcc
-%dir %{_libdir}/sdcc/*-pld-linux
-%dir %{_libdir}/sdcc/*-pld-linux/12.1.0
-%attr(755,root,root) %{_libdir}/sdcc/*-pld-linux/12.1.0/cc1
+%dir %{_libexecdir}/sdcc
+%dir %{_libexecdir}/sdcc/*-pld-linux*
+%dir %{_libexecdir}/sdcc/*-pld-linux*/12.1.0
+%attr(755,root,root) %{_libexecdir}/sdcc/*-pld-linux*/12.1.0/cc1
 %{_datadir}/%{name}
 
 %files ucsim
