@@ -111,7 +111,7 @@ Obsługa debuggera SDCDB dla Emacsa.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 cp -p %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} doc
 
